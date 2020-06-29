@@ -1,13 +1,14 @@
 from setuptools import setup
 
 APP = ['202020.py']
-DATA_FILES = []
+DATA_FILES = ['eye.png']
 OPTIONS = {
     'argv_emulation': True,
     'plist': {
         'LSUIElement': True,
     },
     'packages': ['rumps'],
+    'iconfile': 'eye.icns'
 }
 
 setup(

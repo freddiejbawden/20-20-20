@@ -1,8 +1,9 @@
 import rumps
 import subprocess
 
-def sendNotification(title, subtitle, message):
-  bashCommand = ['osascript -e \'display notification "{0}" with title "{1}" subtitle "{2}" sound name "NAME"\''.format(message, title, subtitle)]
+def sendNotification(title, subtitle, message, sound=True):
+  soundCommand = 'sound name "NAME"' if sound else ''
+  bashCommand = ['osascript -e \'display notification "{0}" with title "{1}" subtitle "{2}" {3}\''.format(message, title, subtitle, soundCommand)]
   process = subprocess.run(bashCommand, shell=True)
   print('sent')
 
@@ -18,7 +19,7 @@ class ScreentimeApp(object):
             "default_time":"00:00",
             "interval":  20*60 # every 20 minutes
         }
-        self.app = rumps.App(self.config["app_name"])
+        self.app = rumps.App(self.config["app_name"],icon="eye.png")
         self.countdown_timer = rumps.Timer(self.on_countdown_tick, 1)
         self.interval = self.config["interval"]
         self.time_left = 0
@@ -30,7 +31,6 @@ class ScreentimeApp(object):
     def set_up_menu(self):
         self.countdown_timer.stop()
         self.countdown_timer.count = 0
-        self.app.title = "🖥"
 
     def on_countdown_tick(self,sender):
         print(self.time_left)
@@ -44,7 +44,7 @@ class ScreentimeApp(object):
   
 
     def start_timer(self, sender):
-      print('start')
+      sendNotification(self.config["app_name"], subtitle="Timer Started", message='',sound=False)
       self.reset_timer()
 
     def reset_timer(self):
