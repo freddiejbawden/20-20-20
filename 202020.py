@@ -9,7 +9,7 @@ class ScreentimeApp(object):
             "break_message": "Time to rest your eyes, look at a point 20ft away for 20 seconds",
             "break_done_message": "Time up!",
             "default_time":"00:00",
-            "interval":  5 # 20*60 # every 20 minutes
+            "interval":  20*60 # every 20 minutes
         }
         self.app = rumps.App(self.config["app_name"])
         self.countdown_timer = rumps.Timer(self.on_countdown_tick, 1)
