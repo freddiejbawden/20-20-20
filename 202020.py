@@ -1,4 +1,11 @@
 import rumps
+import subprocess
+
+def sendNotification(title, subtitle, message):
+  bashCommand = ['osascript -e \'display notification "{0}" with title "{1}" subtitle "{2}" sound name "NAME"\''.format(message, title, subtitle)]
+  process = subprocess.run(bashCommand, shell=True)
+  print('sent')
+
 
 class ScreentimeApp(object):
     def __init__(self):
@@ -9,7 +16,7 @@ class ScreentimeApp(object):
             "break_message": "Time to rest your eyes, look at a point 20ft away for 20 seconds",
             "break_done_message": "Time up!",
             "default_time":"00:00",
-            "interval":  20*60 # every 20 minutes
+            "interval":  5 # every 20 minutes
         }
         self.app = rumps.App(self.config["app_name"])
         self.countdown_timer = rumps.Timer(self.on_countdown_tick, 1)
@@ -28,7 +35,7 @@ class ScreentimeApp(object):
     def on_countdown_tick(self,sender):
         print(self.time_left)
         if self.time_left <= 0:
-            rumps.notification(title=self.config["app_name"], subtitle="Eye Rest Reminder", message=self.config["break_message"])
+            sendNotification(self.config["app_name"], subtitle="Eye Rest Reminder", message=self.config["break_message"])
             self.timer_done()
             self.stop_button.set_callback(None)
         else:
@@ -38,7 +45,6 @@ class ScreentimeApp(object):
 
     def start_timer(self, sender):
       print('start')
-      rumps.notification(title=self.config["app_name"], subtitle="Timer Started", message='')
       self.reset_timer()
 
     def reset_timer(self):
