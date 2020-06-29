@@ -26,6 +26,7 @@ pip install -r requirements.txt
 pip install py2app
 python setup.py py2app
 ```
+App file will the be stored in `dist/`
 # Usage
 
 Once started, a screen icon will appear in your menu bar. Click on the icon and select start timer, this will automatically notify you in 20 minutes. Once the 20 minutes are up, look away from your screen at a point 20ft away for 20 seconds. Afterwards, the timer will start again automatically.
