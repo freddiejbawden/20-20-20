@@ -1,8 +1,8 @@
 # 20-20-20
 
-Quick OSX app to let you know when to take a quick break from your screen.
+Quick and dirty OSX app to let you know when to take a quick break from your screen.
 
-The 20-20-20 rule states that every 20 minutes you should look at something 20 feet away for 20 seconds. This helps your eyes relax and reduces strain. The American Academy of Ophthalmolgy recommends this practice to help with strain [article](https://www.aao.org/eye-health/tips-prevention/computer-usage)
+The 20-20-20 rule states that every 20 minutes you should look at something 20 feet away for 20 seconds. This helps your eyes relax and reduces strain. The American Academy of Ophthalmolgy recommends this practice to help with strain ([article](https://www.aao.org/eye-health/tips-prevention/computer-usage)).
 
 Requires Python3!
 
