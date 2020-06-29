@@ -1,0 +1,50 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-10.15
+
+    steps:
+      - name: Checkout Code 
+        uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install py2app
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Build 
+        run: |
+            python setup.py py2app
+            zip -r app.zip dist/202020.app/
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_id }}
+          release_name: ${{ github.run_id }}
+          draft: false
+          prerelease: false
+      - name: Attatch Binary
+        uses: svenstaro/upload-release-action@v1-release
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: app.zip
+          asset_name: app.zip
+          tag: ${{ github.run_id }}
+          overwrite: true
+            
+            
+        

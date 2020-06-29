@@ -1,8 +1,8 @@
 # 20-20-20
 
-Quick OSX app to let you know when to take a quick break from your screen.
+Quick and dirty OSX app to let you know when to take a quick break from your screen.
 
-The 20-20-20 rule states that every 20 minutes you should look at something 20 feet away for 20 seconds. This helps your eyes relax and reduces strain. The American Academy of Ophthalmolgy recommends this practice to help with strain [article](https://www.aao.org/eye-health/tips-prevention/computer-usage)
+The 20-20-20 rule states that every 20 minutes you should look at something 20 feet away for 20 seconds. This helps your eyes relax and reduces strain. The American Academy of Ophthalmolgy recommends this practice to help with strain ([article](https://www.aao.org/eye-health/tips-prevention/computer-usage)).
 
 Requires Python3!
 
@@ -26,6 +26,7 @@ pip install -r requirements.txt
 pip install py2app
 python setup.py py2app
 ```
+App file will the be stored in `dist/`
 # Usage
 
 Once started, a screen icon will appear in your menu bar. Click on the icon and select start timer, this will automatically notify you in 20 minutes. Once the 20 minutes are up, look away from your screen at a point 20ft away for 20 seconds. Afterwards, the timer will start again automatically.
