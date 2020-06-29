@@ -33,8 +33,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.GITHUB_RUN_ID }}
-          release_name: ${{ env.GITHUB_RUN_ID }}
+          tag_name: ${{ github.run_id }}
+          release_name: ${{ github.run_id }}
           draft: false
           prerelease: false
       - name: Attatch Binary
@@ -43,7 +43,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: app.zip
           asset_name: app.zip
-          tag: ${{ env.GITHUB_RUN_ID }}
+          tag: ${{ github.run_id }}
           overwrite: true
             
             
